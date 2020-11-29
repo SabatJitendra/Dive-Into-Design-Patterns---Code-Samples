@@ -44,12 +44,14 @@ namespace Singleton
 
         public static Singleton getInstance()
         {
-            lock(obj)
+            if (instance == null)
             {
-                if (instance == null)
-                    instance = new Singleton();
-            }
-
+                lock(obj)
+                {
+                    if (instance == null)
+                        instance = new Singleton();
+                }
+            }            
             return instance;
         }
     }
